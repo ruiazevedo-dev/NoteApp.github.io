@@ -21,7 +21,6 @@ class App
         static::container()->bind($key, $resolver);
     }
 
-
     public static function resolve($key)
     {
         return static::container()->resolve($key);
