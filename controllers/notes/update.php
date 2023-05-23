@@ -6,7 +6,19 @@ use Core\Validator;
 
 $db = App::resolve(Database::class);
 
-$currentUserId = 222221;
+$currentUser = $_SESSION['user']['user_id'];
+$email = $_SESSION['user']['email'];
+
+if (!$currentUser) {
+    //echo 'no user id';
+    $user = $db->query('select * from users where email = :email', [
+        'email' => $email
+    ])->get();
+
+    $user_id = $user[0]['id'];
+    $currentUser = $user_id;
+}
+
 
 // find the corresponding note
 $note = $db->query('select * from notes where id = :id', [
@@ -14,12 +26,12 @@ $note = $db->query('select * from notes where id = :id', [
 ])->findOrFail();
 
 // authorize that the current user can edit the note
-authorize($note['user_id'] === $currentUserId);
+authorize($note['user_id'] === $currentUser);
 
 // validate the form
 $errors = [];
 
-if (! Validator::string($_POST['body'], 1, 10)) {
+if (!Validator::string($_POST['body'], 1, 1000)) {
     $errors['body'] = 'A body of no more than 1,000 characters is required.';
 }
 

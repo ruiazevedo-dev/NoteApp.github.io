@@ -29,10 +29,13 @@ $user = $db->query('select * from users where email = :email', [
     'email' => $email
 ])->find();
 
+
 if ($user) {
+    $user_id = $user['id'];
     if (password_verify($password, $user['password'])) {
         login([
-            'email' => $email
+            'email' => $email,
+            'user_id' => $user_id
         ]);
 
         header('location: /');
