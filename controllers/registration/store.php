@@ -32,9 +32,10 @@ if ($user) {
     header('location: /');
     exit();
 } else {
-    $db->query('INSERT INTO users(email, password) VALUES(:email, :password)', [
+    $db->query('INSERT INTO users(email, password,created_at) VALUES(:email, :password, :created_at )', [
         'email' => $email,
-        'password' => password_hash($password, PASSWORD_BCRYPT)
+        'password' => password_hash($password, PASSWORD_BCRYPT),
+        'create_at' => getTime()
     ]);
 
     login([

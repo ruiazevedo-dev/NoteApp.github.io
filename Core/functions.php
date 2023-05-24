@@ -1,6 +1,12 @@
 <?php
+date_default_timezone_set("Europe/Lisbon");
 
+use Core\App;
+use Core\Database;
 use Core\Response;
+
+
+
 
 function dd($value)
 {
@@ -65,4 +71,29 @@ function logout()
 
     $params = session_get_cookie_params();
     setcookie('PHPSESSID', '', time() - 3600, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+}
+
+function checkUserId($currentUser)
+{
+    $db = App::resolve(Database::class);
+    $currentUser = $_SESSION['user']['user_id'];
+    $email = $_SESSION['user']['email'];
+
+    if (!$currentUser) {
+        //echo 'no user id';
+        $user = $db->query('select * from users where email = :email', [
+            'email' => $email
+        ])->get();
+
+        $user_id = $user[0]['id'];
+        $currentUser = $user_id;
+        return $currentUser;
+    } else {
+        return $currentUser;
+    }
+}
+
+function getTime()
+{
+    return date("Y-m-d H:i:s");
 }

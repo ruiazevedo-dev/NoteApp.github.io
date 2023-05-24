@@ -6,18 +6,10 @@ use Core\Validator;
 
 $db = App::resolve(Database::class);
 
-$currentUser = $_SESSION['user']['user_id'];
+
 $email = $_SESSION['user']['email'];
 
-if (!$currentUser) {
-    //echo 'no user id';
-    $user = $db->query('select * from users where email = :email', [
-        'email' => $email
-    ])->get();
-
-    $user_id = $user[0]['id'];
-    $currentUser = $user_id;
-}
+$currentUser = checkUserId($_SESSION['user']['user_id']);
 
 
 // find the corresponding note
@@ -44,9 +36,10 @@ if (count($errors)) {
     ]);
 }
 
-$db->query('update notes set body = :body where id = :id', [
+$db->query('update notes set body = :body , updated_at = :updated_at where id = :id', [
     'id' => $_POST['id'],
-    'body' => $_POST['body']
+    'body' => $_POST['body'],
+    'updated_at' => getTime()
 ]);
 
 // redirect the user
