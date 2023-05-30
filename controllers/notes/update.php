@@ -23,6 +23,10 @@ authorize($note['user_id'] === $currentUser);
 // validate the form
 $errors = [];
 
+if (!Validator::string($_POST['excerpt'], 1, 255)) {
+    $errors['body'] = 'A excerpt of no more than 255 characters is required.';
+}
+
 if (!Validator::string($_POST['body'], 1, 1000)) {
     $errors['body'] = 'A body of no more than 1,000 characters is required.';
 }
@@ -36,8 +40,9 @@ if (count($errors)) {
     ]);
 }
 
-$db->query('update notes set body = :body , updated_at = :updated_at where id = :id', [
+$db->query('update notes set excerpt = :excerpt, body = :body , updated_at = :updated_at where id = :id', [
     'id' => $_POST['id'],
+    'excerpt' => $_POST['excerpt'],
     'body' => $_POST['body'],
     'updated_at' => getTime()
 ]);
