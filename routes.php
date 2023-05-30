@@ -18,3 +18,6 @@ $router->post('/register', 'controllers/registration/store.php')->only('guest');
 $router->get('/login', 'controllers/sessions/create.php')->only('guest');
 $router->post('/sessions', 'controllers/sessions/store.php')->only('guest');
 $router->delete('/sessions', 'controllers/sessions/destroy.php')->only('auth');
+
+$router->get('/trash', 'controllers/trash/index.php')->only('auth');
+$router->get('/trashed', 'controllers/trash/show.php');
