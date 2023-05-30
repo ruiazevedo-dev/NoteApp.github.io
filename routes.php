@@ -20,4 +20,7 @@ $router->post('/sessions', 'controllers/sessions/store.php')->only('guest');
 $router->delete('/sessions', 'controllers/sessions/destroy.php')->only('auth');
 
 $router->get('/trash', 'controllers/trash/index.php')->only('auth');
-$router->get('/trashed', 'controllers/trash/show.php');
+$router->get('/trashed', 'controllers/trash/show.php')->only('auth');
+
+$router->delete('/trash', 'controllers/trash/destroy.php');
+$router->restore('/trash', 'controllers/trash/restore.php');

@@ -41,7 +41,10 @@ class Router
     {
         return $this->add('PATCH', $uri, $controller);
     }
-
+    public function restore($uri, $controller)
+    {
+        return $this->add('RESTORE', $uri, $controller);
+    }
     public function put($uri, $controller)
     {
         return $this->add('PUT', $uri, $controller);
