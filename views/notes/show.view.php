@@ -4,15 +4,25 @@
 
 <main>
     <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-        <p class="mb-6">
-            <a href="/notes" class="text-blue-500 underline">go back...</a>
-        </p>
+        <div class="max-w-md py-4 px-8 bg-white shadow-lg rounded-lg my-20 m-auto">
+            <div>
+                <h2 class="text-gray-800 text-3xl font-semibold"><?= htmlspecialchars($note['excerpt']) ?></h2>
+                <p class="mt-2 text-gray-600"><?= htmlspecialchars($note['body']) ?></p>
+            </div>
+            <div class="flex justify-end mt-4">
+                <p class="text-l font-medium text-indigo-500"><?= htmlspecialchars(date("d-m-Y", strtotime($note['created_at']))) ?></p>
+            </div>
+            <div class="mt-6 flow-root">
+                <a href="/notes" class="float-left justify-center rounded-md border border-transparent bg-red-400 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                    Notes
+                </a>
+                <a href="/note/edit?id=<?= $note['id'] ?>" class="float-right justify-center rounded-md border border-transparent bg-blue-400 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                    Edit
+                </a>
+            </div>
 
-        <p><?= htmlspecialchars($note['body']) ?></p>
+        </div>
 
-        <footer class="mt-6">
-            <a href="/note/edit?id=<?= $note['id'] ?>" class="inline-flex justify-center rounded-md border border-transparent bg-gray-500 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Edit</a>
-        </footer>
     </div>
 </main>
 

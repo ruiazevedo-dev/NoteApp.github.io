@@ -3,21 +3,7 @@
 <?php require base_path('views/partials/banner.php') ?>
 
 <main>
-    <!-- <div class="px-4 sm:px-8 max-w-5xl m-auto">
-        <ul class="border border-gray-200 rounded overflow-hidden shadow-md">
-            <?php foreach ($notes as $note) : ?>
-                <li>
-                    <a href="/note?id=<?= $note['id'] ?>" class="px-4 py-2 bg-white hover:bg-sky-100 hover:text-sky-900 border-b last:border-none border-gray-200 transition-all duration-300 ease-in-out">
-                        <?= htmlspecialchars($note['body']) ?>
-                    </a>
-                </li>
-            <?php endforeach; ?>
-        </ul>
 
-        <p class="mt-6">
-            <a href="/notes/create" class="text-blue-500 hover:underline">Create Note</a>
-        </p>
-    </div> -->
     <div class="mt-6">
         <div class="px-4 sm:px-8 max-w-3xl m-auto">
             <ul class="border border-gray-200 rounded overflow-hidden shadow-md">
