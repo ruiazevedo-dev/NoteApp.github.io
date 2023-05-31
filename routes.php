@@ -21,6 +21,9 @@ $router->delete('/sessions', 'controllers/sessions/destroy.php')->only('auth');
 
 $router->get('/trash', 'controllers/trash/index.php')->only('auth');
 $router->get('/trashed', 'controllers/trash/show.php')->only('auth');
-
 $router->delete('/trash', 'controllers/trash/destroy.php');
 $router->restore('/trash', 'controllers/trash/restore.php');
+
+$router->get('/unpublished', 'controllers/unpublished/index.php')->only('auth');
+$router->get('/unpublish', 'controllers/unpublished/show.php')->only('auth');
+$router->publish('/unpublished', 'controllers/unpublished/publish.php')->only('auth');

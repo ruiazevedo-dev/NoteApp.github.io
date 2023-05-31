@@ -45,6 +45,11 @@ class Router
     {
         return $this->add('RESTORE', $uri, $controller);
     }
+
+    public function publish($uri, $controller)
+    {
+        return $this->add('PUBLISH', $uri, $controller);
+    }
     public function put($uri, $controller)
     {
         return $this->add('PUT', $uri, $controller);
