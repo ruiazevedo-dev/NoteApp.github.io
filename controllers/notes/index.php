@@ -10,7 +10,7 @@ $email = $_SESSION['user']['email'];
 $currentUser = checkUserId($_SESSION['user']['user_id']);
 
 
-$notes = $db->query('select * from notes where user_id = :user_id and deleted_at IS NULL', [
+$notes = $db->query('select * from notes where user_id = :user_id and deleted_at IS NULL and is_published = 1', [
     'user_id' => $currentUser
 ])->get();
 

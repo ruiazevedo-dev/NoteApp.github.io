@@ -30,11 +30,12 @@ if (!empty($errors)) {
 }
 
 
-$db->query('INSERT INTO notes(excerpt,body, user_id,created_at) VALUES(:excerpt,:body, :user_id, :created_at )', [
+$db->query('INSERT INTO notes(excerpt,body,user_id,created_at,is_published) VALUES(:excerpt,:body, :user_id, :created_at, :is_published )', [
     'excerpt' => $_POST['excerpt'],
     'body' => $_POST['body'],
     'user_id' => $currentUser,
-    'created_at' => getTime()
+    'created_at' => getTime(),
+    'is_published' => $_POST['is_published']
 ]);
 
 header('location: /notes');
