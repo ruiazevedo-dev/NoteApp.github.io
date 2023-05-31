@@ -40,11 +40,12 @@ if (count($errors)) {
     ]);
 }
 
-$db->query('update notes set excerpt = :excerpt, body = :body , updated_at = :updated_at where id = :id', [
+$db->query('update notes set excerpt = :excerpt, body = :body , updated_at = :updated_at , is_published = :is_published where id = :id', [
     'id' => $_POST['id'],
     'excerpt' => $_POST['excerpt'],
     'body' => $_POST['body'],
-    'updated_at' => getTime()
+    'updated_at' => getTime(),
+    'is_published' => $_POST['is_published']
 ]);
 
 // redirect the user

@@ -32,6 +32,13 @@
                                         <p class="text-red-500 text-xs mt-2"><?= $errors['body'] ?></p>
                                     <?php endif; ?>
                                 </div>
+                                <label for="is_published" class="block text-sm font-medium leading-6 text-gray-900 mt-4">Do you want to publish the note?</label>
+                                <div class="mt-2">
+                                    <select id="is_published" name="is_published" autocomplete="is_published" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                        <option value="1" <?php if ($note['is_published'] == 1)  echo 'selected="selected"'; ?>>Yes</option>
+                                        <option value="0" <?php if ($note['is_published'] == 0)  echo 'selected="selected"'; ?>>No</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
 
